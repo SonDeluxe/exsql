@@ -5,12 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionPool {
-    // Tạo URL kết nối từ biến môi trường
-   private static final String URL = "jdbc:postgresql://" +
-    System.getenv("DB_HOST") + ":" +
-    System.getenv("DB_PORT") + "/" +
-    System.getenv("DB_NAME") +
-    "?sslmode=require&options=endpoint%3DngpbZXT8Mi2yzLAep-dark-river-aleh2bfx";
+    private static final String URL = "jdbc:postgresql://" +
+        System.getenv("DB_HOST") + "/" +
+        System.getenv("DB_NAME") +
+        "?sslmode=require&options=endpoint%3Dep-dark-river-a1eh2bfx";
+
     
     private static final String USER = System.getenv("DB_USER");
     private static final String PASSWORD = System.getenv("DB_PASS");
