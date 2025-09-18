@@ -10,7 +10,7 @@ public class ConnectionPool {
     System.getenv("DB_HOST") + ":" +
     System.getenv("DB_PORT") + "/" +
     System.getenv("DB_NAME") +
-    "?sslmode=require&options=endpoint%3Dngp_bZXT8Mi2yzLAep-dark-river-aleh2bfx";
+    "?sslmode=require&options=endpoint%3DngpbZXT8Mi2yzLAep-dark-river-aleh2bfx";
     
     private static final String USER = System.getenv("DB_USER");
     private static final String PASSWORD = System.getenv("DB_PASS");
