@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionPool {
-    // In biến môi trường để kiểm tra
     static {
         System.out.println("DB_HOST: " + System.getenv("DB_HOST"));
         System.out.println("DB_NAME: " + System.getenv("DB_NAME"));
@@ -14,9 +13,9 @@ public class ConnectionPool {
     }
 
     private static final String URL = "jdbc:postgresql://" +
-        System.getenv("DB_HOST") + "/" +
+        System.getenv("DB_HOST") + ":" + System.getenv("DB_PORT") + "/" +
         System.getenv("DB_NAME") +
-        "?sslmode=require&options=endpoint%3Dep-dark-river-a1eh2bfx";
+        "?sslmode=require";
 
     private static final String USER = System.getenv("DB_USER");
     private static final String PASSWORD = System.getenv("DB_PASS");
