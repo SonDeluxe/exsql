@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionPool {
-    // ✅ Thông tin kết nối hardcoded
-    private static final String URL = "jdbc:postgresql://ep-dark-river-a1eh2bfx-pooler.ap-southeast-1.aws.neon.tech:5432/neondb?sslmode=require&options=endpoint%3Dep-dark-river-a1eh2bfx";
+    // ✅ Thông tin kết nối hardcoded — đã bỏ options để tránh lỗi SNI
+    private static final String URL = "jdbc:postgresql://ep-dark-river-a1eh2bfx-pooler.ap-southeast-1.aws.neon.tech:5432/neondb?sslmode=require";
     private static final String USER = "neondb_owner";
     private static final String PASSWORD = "ngp_bZXT8Mi2yzLAep";
 
