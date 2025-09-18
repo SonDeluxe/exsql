@@ -10,7 +10,8 @@ public class UserDB {
     public static int insert(User user) {
         if (user == null) return 0;
 
-        String query = "INSERT INTO Users (Email, FirstName, LastName) VALUES (?, ?, ?)";
+        // ✅ Sửa lại tên bảng và tên cột thành chữ thường
+        String query = "INSERT INTO users (email, firstname, lastname) VALUES (?, ?, ?)";
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
@@ -28,7 +29,8 @@ public class UserDB {
     public static int update(User user) {
         if (user == null) return 0;
 
-        String query = "UPDATE Users SET FirstName = ?, LastName = ? WHERE Email = ?";
+        // ✅ Sửa lại tên bảng và tên cột thành chữ thường
+        String query = "UPDATE users SET firstname = ?, lastname = ? WHERE email = ?";
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
@@ -46,7 +48,8 @@ public class UserDB {
     public static int delete(User user) {
         if (user == null || user.getEmail() == null) return 0;
 
-        String query = "DELETE FROM Users WHERE Email = ?";
+        // ✅ Sửa lại tên bảng thành chữ thường
+        String query = "DELETE FROM users WHERE email = ?";
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
@@ -61,7 +64,8 @@ public class UserDB {
     public static boolean emailExists(String email) {
         if (email == null || email.isEmpty()) return false;
 
-        String query = "SELECT Email FROM Users WHERE Email = ?";
+        // ✅ Sửa lại tên bảng và tên cột thành chữ thường
+        String query = "SELECT email FROM users WHERE email = ?";
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
@@ -78,7 +82,8 @@ public class UserDB {
     public static User selectUser(String email) {
         if (email == null || email.isEmpty()) return null;
 
-        String query = "SELECT Email, FirstName, LastName FROM Users WHERE Email = ?";
+        // ✅ Sửa lại tên bảng và tên cột thành chữ thường
+        String query = "SELECT email, firstname, lastname FROM users WHERE email = ?";
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
@@ -86,9 +91,9 @@ public class UserDB {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return new User(
-                            rs.getString("FirstName"),
-                            rs.getString("LastName"),
-                            rs.getString("Email")
+                            rs.getString("firstname"),
+                            rs.getString("lastname"),
+                            rs.getString("email")
                     );
                 }
             }
