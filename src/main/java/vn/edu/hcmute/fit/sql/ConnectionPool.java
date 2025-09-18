@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConnectionPool {
     // ✅ Chuỗi JDBC đã thêm sslmode=require để bật SSL
-    private static final String URL = "jdbc:postgresql://dpg-d35v5h4en6fns7ih3dgp2n0-a:5432/exsql?sslmode=require";
-    private static final String USER = "sohmcutie";
-    private static final String PASSWORD = "aryjtopEtBoknVjmcJsLkXb2cThSs6f";
+    private static final String URL = "jdbc:postgresql://dpg-d35v54hr0fns73bgc2n0-a:5432/exsql?sslmode=require";
+    private static final String USER = "sonhcmute";
+    private static final String PASSWORD = "avjtqoPEtBoknVpwcJszLXGX8cIh35sf";
 
     private static final ConnectionPool instance = new ConnectionPool();
 
