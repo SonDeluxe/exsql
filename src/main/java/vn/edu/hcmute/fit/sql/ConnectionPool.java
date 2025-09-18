@@ -5,19 +5,30 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionPool {
-    // Thông tin kết nối ghi trực tiếp
-    private static final String URL = "jdbc:postgresql://ep-dark-river-a1eh2bfx-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&options=endpoint%3Dep-dark-river-a1eh2bfx";
-    private static final String USER = "neondb_owner";
-    private static final String PASSWORD = "ngp_bZXT8Ml2yzLAep";
+    // In biến môi trường để kiểm tra
+    static {
+        System.out.println("DB_HOST: " + System.getenv("DB_HOST"));
+        System.out.println("DB_NAME: " + System.getenv("DB_NAME"));
+        System.out.println("DB_USER: " + System.getenv("DB_USER"));
+        System.out.println("DB_PASS: " + System.getenv("DB_PASS"));
+    }
+
+    private static final String URL = "jdbc:postgresql://" +
+        System.getenv("DB_HOST") + "/" +
+        System.getenv("DB_NAME") +
+        "?sslmode=require&options=endpoint%3Dep-dark-river-a1eh2bfx";
+
+    private static final String USER = System.getenv("DB_USER");
+    private static final String PASSWORD = System.getenv("DB_PASS");
 
     private static final ConnectionPool instance = new ConnectionPool();
 
     private ConnectionPool() {
         try {
             Class.forName("org.postgresql.Driver");
-            System.out.println("✅ PostgreSQL JDBC Driver loaded.");
+            System.out.println("PostgreSQL JDBC Driver loaded successfully.");
         } catch (ClassNotFoundException e) {
-            System.err.println("❌ Driver not found: " + e.getMessage());
+            System.err.println("PostgreSQL JDBC Driver not found: " + e.getMessage());
         }
     }
 
