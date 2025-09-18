@@ -7,15 +7,17 @@ import java.sql.SQLException;
 public class ConnectionPool {
     static {
         System.out.println("DB_HOST: " + System.getenv("DB_HOST"));
+        System.out.println("DB_PORT: " + System.getenv("DB_PORT"));
         System.out.println("DB_NAME: " + System.getenv("DB_NAME"));
         System.out.println("DB_USER: " + System.getenv("DB_USER"));
         System.out.println("DB_PASS: " + System.getenv("DB_PASS"));
     }
 
+    // ✅ Chuỗi JDBC có thêm options=endpoint%3D...
     private static final String URL = "jdbc:postgresql://" +
         System.getenv("DB_HOST") + ":" + System.getenv("DB_PORT") + "/" +
         System.getenv("DB_NAME") +
-        "?sslmode=require";
+        "?sslmode=require&options=endpoint%3Dep-dark-river-a1eh2bfx";
 
     private static final String USER = System.getenv("DB_USER");
     private static final String PASSWORD = System.getenv("DB_PASS");
@@ -25,9 +27,9 @@ public class ConnectionPool {
     private ConnectionPool() {
         try {
             Class.forName("org.postgresql.Driver");
-            System.out.println("PostgreSQL JDBC Driver loaded successfully.");
+            System.out.println("✅ PostgreSQL JDBC Driver loaded.");
         } catch (ClassNotFoundException e) {
-            System.err.println("PostgreSQL JDBC Driver not found: " + e.getMessage());
+            System.err.println("❌ Driver not found: " + e.getMessage());
         }
     }
 
