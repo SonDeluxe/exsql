@@ -5,29 +5,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionPool {
-    static {
-        System.out.println("DB_HOST: " + System.getenv("DB_HOST"));
-        System.out.println("DB_NAME: " + System.getenv("DB_NAME"));
-        System.out.println("DB_USER: " + System.getenv("DB_USER"));
-        System.out.println("DB_PASS: " + System.getenv("DB_PASS"));
-    }
-
-    private static final String URL = "jdbc:postgresql://" +
-        System.getenv("DB_HOST") + ":" + System.getenv("DB_PORT") + "/" +
-        System.getenv("DB_NAME") +
-        "?sslmode=require"; // <--- CHỈ ĐỂ sslmode=require ở đây.
-
-    private static final String USER = System.getenv("DB_USER");
-    private static final String PASSWORD = System.getenv("DB_PASS");
+    // ✅ Thông tin kết nối từ Render
+    private static final String URL = "jdbc:postgresql://dpg-d35v5h4en6fns7ih3dgp2n0-a:5432/exsql";
+    private static final String USER = "sohmcutie";
+    private static final String PASSWORD = "aryjtopEtBoknVjmcJsLkXb2cThSs6f";
 
     private static final ConnectionPool instance = new ConnectionPool();
 
     private ConnectionPool() {
         try {
             Class.forName("org.postgresql.Driver");
-            System.out.println("PostgreSQL JDBC Driver loaded successfully.");
+            System.out.println("✅ PostgreSQL JDBC Driver loaded.");
+            System.out.println("🔗 Chuỗi JDBC: " + URL);
         } catch (ClassNotFoundException e) {
-            System.err.println("PostgreSQL JDBC Driver not found: " + e.getMessage());
+            System.err.println("❌ Driver not found: " + e.getMessage());
         }
     }
 
@@ -38,7 +29,7 @@ public class ConnectionPool {
     public Connection getConnection() throws SQLException {
         try {
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("✅ Kết nối thành công tới Neon PostgreSQL");
+            System.out.println("✅ Kết nối thành công tới Render PostgreSQL");
             return conn;
         } catch (SQLException e) {
             System.err.println("❌ Lỗi kết nối JDBC: " + e.getMessage());
