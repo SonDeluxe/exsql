@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionPool {
-    // ✅ Chuỗi JDBC đã thêm sslmode=require để bật SSL
-    private static final String URL = "jdbc:postgresql://dpg-d35v54hr0fns73bgc2n0-a:5432/exsql?sslmode=require";
+    // ✅ Sử dụng URL bên ngoài đã được Render cấp
+    private static final String URL = "jdbc:postgresql://dpg-d35v54hr0fns73bgc2n0-a.oregon-postgres.render.com:5432/exsql?sslmode=require";
     private static final String USER = "sonhcmute";
     private static final String PASSWORD = "avjtqoPEtBoknVpwcJszLXGX8cIh35sf";
 
